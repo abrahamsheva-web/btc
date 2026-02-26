@@ -6,12 +6,13 @@ from telegram import Bot
 TELEGRAM_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"
 CHANNEL_CHAT_ID = "@yourchannelname"  # Use channel name or chat ID
 
-# Function to get the current Bitcoin price
+# Function to get the current Bitcoin price using Blockchair's API
 def get_btc_price():
-    url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+    url = "https://api.blockchair.com/bitcoin/stats"
     response = requests.get(url)
     data = response.json()
-    return data['bitcoin']['usd']
+    # The price is located in the "market_price_usd" field
+    return data['data']['market_price_usd']
 
 # Function to send the message to Telegram channel
 def send_message_to_telegram(message):
