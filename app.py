@@ -3,8 +3,8 @@ import requests
 from telegram import Bot
 
 # Replace with your Telegram bot token and channel chat ID
-TELEGRAM_TOKEN = "8712435552:AAFNsNEap0YbrzGyNZ14B-9HcC2nSzaps6A"
-CHANNEL_CHAT_ID = "@cryptoprice66"  # Use channel name or chat ID
+TELEGRAM_TOKEN = ""
+CHANNEL_CHAT_ID = ""  # Use channel name or chat ID
 
 # Function to get the current Bitcoin price using Blockchair's API
 def get_btc_price():
