@@ -5,6 +5,12 @@ import requests
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 CHANNEL_CHAT_ID = os.getenv("CHANNEL_CHAT_ID")
 
+
+def send_telegram_message(text):
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": CHANNEL_CHAT_ID,
+
 def get_btc_price():
     try:
         url = "https://api.blockchair.com/bitcoin/stats"
@@ -38,10 +44,6 @@ while True:
 
     time.sleep(60)
 
-def send_telegram_message(text):
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": CHANNEL_CHAT_ID,
         "text": text
     }
 
