@@ -6,11 +6,6 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 CHANNEL_CHAT_ID = os.getenv("CHANNEL_CHAT_ID")
 
 
-def send_telegram_message(text):
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": CHANNEL_CHAT_ID,
-
 def get_btc_price():
     try:
         url = "https://api.blockchair.com/bitcoin/stats"
@@ -20,17 +15,15 @@ def get_btc_price():
     except Exception as e:
         print("Error fetching BTC price:", e)
         return None
-
 def send_telegram_message(text):
-    try:
-        url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-        payload = {
-            "chat_id": CHANNEL_CHAT_ID,
-            "text": text
-        }
-        requests.post(url, json=payload)
-    except Exception as e:
-        print("Error sending Telegram message:", e)
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": CHANNEL_CHAT_ID,
+        "text": text
+    }
+
+    response = requests.post(url, json=payload)
+    print("Telegram response:", response.text)
 
 while True:
     price = get_btc_price()
